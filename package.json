@@ -1,0 +1,23 @@
+{
+  "name": "volume",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node-static": "^0.7.1",
+    "@types/react": "^16.0.21",
+    "@types/react-dom": "^16.0.2",
+    "@types/typescript": "^2.0.0",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "typescript": "^2.6.1"
+  }
+}
