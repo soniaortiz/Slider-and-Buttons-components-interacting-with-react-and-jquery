@@ -17,9 +17,9 @@ export class SliderValue extends React.Component <props, state>{
       this.handleSlide = this.handleSlide.bind(this);
       this.state = {sliderValue: 0};
     }
-    handleSlide(event: UIEvent<ChangeEvent<HTMLElement>>) {
-      this.setState({sliderValue: event.detail});
-      console.log(event)
+    handleSlide(event: UIEvent<ChangeEvent<HTMLElement>>) {//not working
+      console.log("Slider value handle side")
+      this.setState({sliderValue: 55});
     }
 
     componentDidMount() {
@@ -30,19 +30,21 @@ export class SliderValue extends React.Component <props, state>{
     }
 
     handleChange(){
-      // console.log("handle change slider-value")
+       console.log("handle change slider-value")
       let handleChange = (e: Event, ui: UIEvent<ChangeEvent<HTMLElement>>)=>{
         var slideEvent = new CustomEvent('slide', {
           detail: {ui: ui, jQueryEvent: e}
         })
         window.dispatchEvent(slideEvent)
+        console.log(slideEvent)
       }
     }
 
     render() {
+
       $('#slider').slider({
-        'change': this.handleChange,
-        'slide': this.handleChange
+        'change': this.handleChange.bind(this),
+        'slide': this.handleChange.bind(this)
       })
       return <div className="" >
         Value: {this.state.sliderValue}

@@ -3,6 +3,8 @@ import * as ReactDOM from 'react-dom';
 import * as $ from 'jquery';
 import 'jquery-ui/ui/widgets/slider';
 import { Event } from '_debugger';
+import { SliderValue } from './slider-value';
+import { UIEventHandler } from 'react';
 
 interface props{
 }
@@ -16,16 +18,19 @@ export class SliderButtons extends React.Component <props, state>{//Create the b
       this.handleSlide = this.handleSlide.bind(this);
       this.handleChange = this.handleChange.bind(this);
     }
-    handleSlide(event: React.MouseEvent<HTMLButtonElement>, ui: UIEvent) {
-      // console.log("handle slide");
-      this.setState({sliderValue: ui.detail});
+    handleSlide(event: React.MouseEvent<HTMLButtonElement>, ui: UIEventHandler<HTMLSpanElement>) {//update the state
+     
+      console.log("handle slide" ,ui);//.value
+      this.setState({sliderValue: 0});
     }
-    handleChange(value: number) {
+    handleChange(value: number) {//updates the slider when the button is clicked
       //console.log("Handle change");
       return ()=> {
-        $('#slider').slider('value', this.state.sliderValue + value)
-        this.setState({sliderValue: this.state.sliderValue + value})
-      }//for every click in the buttons or in the slide will be executed
+          console.log("sets new value");
+          $('#slider').slider('value', this.state.sliderValue + value)
+          this.setState({sliderValue: this.state.sliderValue + value})//sets new value
+        }//for every click in the buttons or in the slide will be executed
+      
     }
     componentDidMount() {
       // console.log("did mount");

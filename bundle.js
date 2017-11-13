@@ -30024,8 +30024,8 @@ var SliderValue = /** @class */ (function (_super) {
         return _this;
     }
     SliderValue.prototype.handleSlide = function (event) {
-        this.setState({ sliderValue: event.detail });
-        console.log(event);
+        console.log("Slider value handle side");
+        this.setState({ sliderValue: 55 });
     };
     SliderValue.prototype.componentDidMount = function () {
         window.addEventListener('slide', this.handleSlide.bind(this));
@@ -30034,18 +30034,19 @@ var SliderValue = /** @class */ (function (_super) {
         window.removeEventListener('slide', this.handleSlide.bind(this));
     };
     SliderValue.prototype.handleChange = function () {
-        // console.log("handle change slider-value")
+        console.log("handle change slider-value");
         var handleChange = function (e, ui) {
             var slideEvent = new CustomEvent('slide', {
                 detail: { ui: ui, jQueryEvent: e }
             });
             window.dispatchEvent(slideEvent);
+            console.log(slideEvent);
         };
     };
     SliderValue.prototype.render = function () {
         $('#slider').slider({
-            'change': this.handleChange,
-            'slide': this.handleChange
+            'change': this.handleChange.bind(this),
+            'slide': this.handleChange.bind(this)
         });
         return React.createElement("div", { className: "" },
             "Value: ",
@@ -30385,6 +30386,14 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(3);
 var $ = __webpack_require__(1);
@@ -30399,15 +30408,17 @@ var SliderButtons = /** @class */ (function (_super) {
         return _this;
     }
     SliderButtons.prototype.handleSlide = function (event, ui) {
-        // console.log("handle slide");
-        this.setState({ sliderValue: ui.detail });
+        var xVal = __assign({}, ui);
+        console.log("handle slide", ui); //.value
+        this.setState({ sliderValue: 10 });
     };
     SliderButtons.prototype.handleChange = function (value) {
         var _this = this;
         //console.log("Handle change");
         return function () {
+            console.log("sets new value");
             $('#slider').slider('value', _this.state.sliderValue + value);
-            _this.setState({ sliderValue: _this.state.sliderValue + value });
+            _this.setState({ sliderValue: _this.state.sliderValue + value }); //sets new value
         }; //for every click in the buttons or in the slide will be executed
     };
     SliderButtons.prototype.componentDidMount = function () {
