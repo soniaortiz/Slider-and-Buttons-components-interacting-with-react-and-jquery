@@ -17,15 +17,15 @@ export class SliderValue extends React.Component <props, state>{
       this.state = {sliderValue: 0};
       this.handleSlide =  this.handleSlide.bind(this);
     }
-    handleSlide(event: any) {//try to fix the type
+    handleSlide(event: JQuery.Event, {value= 0}: JQueryUI.SliderUIParams) {//try to fix the type
       console.log("Slider value handle side lasdkjflkasd", event)
-      //this.setState({sliderValue: event.value});
+      this.setState({sliderValue: value});
     }
     componentDidMount() {
-      window.addEventListener('slide', this.handleSlide);//add event listener
+      $('#slider').on('slide', this.handleSlide) 
     }
     componentWillUnmount() {
-      window.removeEventListener('slide', this.handleSlide)
+      $('#slider').off('slide', this.handleSlide)
     }
      render() {
       return <div className="" >
