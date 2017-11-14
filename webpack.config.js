@@ -5,6 +5,7 @@ module.exports={
     output:{
         filename: 'bundle.js'
     },
+    devtool: "#inline-source-map",
     resolve:{
         extensions: ['.js', '.tsx', '.tsc', '.ts'],
     },

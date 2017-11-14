@@ -21,14 +21,12 @@ export class SliderValue extends React.Component <props, state>{
       console.log("Slider value handle side")
       this.setState({sliderValue: 55});
     }
-
     componentDidMount() {
       window.addEventListener('slide', this.handleSlide.bind(this))
     }
     componentWillUnmount() {
       window.removeEventListener('slide', this.handleSlide.bind(this))
     }
-
     handleChange(){
        console.log("handle change slider-value")
       let handleChange = (e: Event, ui: UIEvent<ChangeEvent<HTMLElement>>)=>{
@@ -39,9 +37,7 @@ export class SliderValue extends React.Component <props, state>{
         console.log(slideEvent)
       }
     }
-
     render() {
-
       $('#slider').slider({
         'change': this.handleChange.bind(this),
         'slide': this.handleChange.bind(this)
