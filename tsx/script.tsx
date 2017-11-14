@@ -5,7 +5,7 @@ import {SliderButtons} from './slider-buttons';
 
 ReactDOM.render(
     <div>
-      <SliderValue sliderValue={0}/>
+      <SliderValue />
       <SliderButtons/>
     </div>,
     document.getElementById('content')
