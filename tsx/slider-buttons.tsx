@@ -15,13 +15,10 @@ export class SliderButtons extends React.Component <props, state>{//Create the b
     constructor(props: props) {
       super(props)
       this.state = {sliderValue: 0};
-      this.handleSlide = this.handleSlide.bind(this);
-      this.handleChange = this.handleChange.bind(this);
     }
-    handleSlide(event: React.MouseEvent<HTMLButtonElement>, ui: UIEventHandler<HTMLSpanElement>) {//update the state
-     
-      console.log("handle slide" ,ui);//.value
-      this.setState({sliderValue: 0});
+    handleSlide(event: React.MouseEvent<HTMLButtonElement>, ui: any) {//update the state
+      console.log("handle slide", ui.value);//value
+      this.setState({sliderValue: ui.value});
     }
     handleChange(value: number) {//updates the slider when the button is clicked
       //console.log("Handle change");
@@ -29,16 +26,20 @@ export class SliderButtons extends React.Component <props, state>{//Create the b
           console.log("sets new value");
           $('#slider').slider('value', this.state.sliderValue + value)
           this.setState({sliderValue: this.state.sliderValue + value})//sets new value
-        }//for every click in the buttons or in the slide will be executed
-      
+        }//for every click in the buttons or in the slide will be executed      
     }
     componentDidMount() {
-      // console.log("did mount");
+      console.log("did mount");
+            //creates the slider once
+      $('#slider').slider({//creates an slider
+        'change': this.handleChange.bind(this),
+        'slide': this.handleChange.bind(this)
+      });
       $('#slider').on('slide', this.handleSlide.bind(this));
     }
     componentWillUnmount() {
-      // console.log("will unmount");
-     $('#slider').off('slide', this.handleSlide.bind(this))
+      console.log("will unmount");
+     $('#slider').off('slide', this.handleSlide.bind(this));
     }
     render() {//creates the buttons elements
       return <div>

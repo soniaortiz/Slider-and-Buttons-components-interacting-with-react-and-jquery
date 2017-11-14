@@ -3,7 +3,8 @@ let webpack = require('webpack');
 module.exports={
     entry: './tsx/script.tsx',
     output:{
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        
     },
     devtool: "#inline-source-map",
     resolve:{
